@@ -5,9 +5,12 @@ import { MdLogin, MdLogout, MdSearch } from "react-icons/md"
 // 💡 메뉴 데이터 정의
 const MENU_ITEMS = [
   { name: "전체 상품", path: "/" },
-  { name: "남성 바지", path: "/productAll/male_pants" },
-  { name: "여성 바지", path: "/productAll/female_pants" },
+  { name: "남성", path: "/productAll/male_pants" },
+  { name: "여성", path: "/productAll/female_pants" },
   { name: "아우터", path: "/productAll/outer" },
+  { name: "팬츠", path: "/productAll/outer" },
+  { name: "슈즈", path: "/productAll/outer" },
+  { name: "액세서리", path: "/productAll/outer" },
 ];
 
 const Header = () => {
@@ -35,7 +38,10 @@ const Header = () => {
         </ul>
 
         <div className="search-box">
-          <Link to="/login" className="log-search"><MdSearch /></Link>
+          <form className='search-form'>            
+            <input type="text" name="search" placeholder="검색" className="search-input-field" autoFocus />
+            <button type='submit' className='search-submit-btn'><MdSearch /></button>                          
+          </form>
         </div>            
       </nav> 
     </header>

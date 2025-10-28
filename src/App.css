@@ -1,25 +1,21 @@
 /* 기본 초기화 */
-.header-area {
-    /* 전체 헤더의 레이아웃을 Flexbox로 설정 */
+.header-area { 
     display: flex;
-    flex-direction: column; /* 기본은 컬럼 방향 (상하 배치) */
+    flex-direction: column;
     width: 100%;
     padding: 10px 20px;
     border-bottom: 1px solid #e0e0e0;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
     background-color: #ffffff;
-    position: sticky; /* 상단 고정 */
+    position: sticky; 
     top: 0;
     z-index: 1000;
 }
-
-/* 1. 상단 로그인/로그아웃 버튼 영역 스타일 */
 .log-buttons {
     display: flex;
-    justify-content: flex-end; /* 오른쪽 끝으로 정렬 */
+    justify-content: flex-end;
     margin-bottom: 10px;
 }
-
 .log-buttons a {
     text-decoration: none;
     color: #333;
@@ -29,49 +25,36 @@
     display: flex;
     align-items: center;
 }
-
 .log-buttons a:hover {
     color: #000;
     font-weight: bold;
 }
-
-/* 아이콘과 텍스트 간의 간격 */
 .log-buttons a svg {
     margin-right: 5px;
 }
-
-/* 2. 로고 영역 스타일 */
 .logo-box {
-    text-align: center; /* 로고를 중앙에 배치 */
+    text-align: center;
     margin-bottom: 20px;
 }
-
 .logo-box .logo {
     display: inline-block;
 }
-
 .logo-box img {
-    max-height: 40px; /* 로고 이미지 높이 조정 */
+    max-height: 40px; 
     width: auto;
 }
-
-/* 3. 메인 네비게이션 및 검색 영역 스타일 */
 .main-nav {
     display: flex;
-    justify-content: center; /* 메뉴와 검색창을 중앙에 배치 */
+    justify-content: center;
     align-items: center;
 }
-
-/* 메뉴 리스트 (ul) 스타일 */
 .main-nav ul {
     list-style: none;
     padding: 0;
     margin: 0;
     display: flex;
-    gap: 30px; /* 메뉴 항목 간의 간격 */
+    gap: 30px;
 }
-
-/* 메뉴 항목 (li) 스타일 */
 .main-nav li a {
     text-decoration: none;
     color: #333;
@@ -80,8 +63,6 @@
     padding: 5px 0;
     position: relative;
 }
-
-/* 메뉴 호버 시 밑줄 효과 */
 .main-nav li a::after {
     content: '';
     position: absolute;
@@ -92,25 +73,91 @@
     background-color: #000;
     transition: width 0.3s ease-in-out;
 }
-
 .main-nav li a:hover::after {
     width: 100%;
 }
 
-/* 검색 아이콘 스타일 */
-.search-box {
-    position: absolute;
-    right: 20px; /* 오른쪽 끝에서 20px 떨어진 곳에 배치 */
+.search-box {  
+  position: absolute; 
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
 }
-
-.search-box .log-search {
-    color: #333;
-    font-size: 24px; /* 아이콘 크기 */
-    display: flex;
+.search-form {
+  display: flex;
+  align-items: center;
+  border: none; 
+  border-radius: 0;
+  overflow: visible;
+  background-color: transparent;
+  transition: border-color 0.3s ease;
+}
+.search-form:focus-within {
+  border-color: transparent; 
+  box-shadow: none;
+}
+.search-input-field {
+  padding: 8px 0;
+  margin-right: 10px;
+  border: none; 
+  outline: none; 
+  font-size: 15px;
+  width: 120px; 
+  background-color: transparent;   
+  border-bottom: 1px solid #aaa;
+  transition: border-bottom-color 0.3s ease;
+}
+.search-input-field:focus {
+  border-bottom-color: #000;
+}
+.search-input-field::placeholder {
+  color: #aaa;
+}
+.search-submit-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px 0;
+  color: #666; 
+  font-size: 20px; 
+  transition: color 0.2s ease;
+}
+.search-submit-btn:hover {
+  color: #000;
+}
+.main-nav {
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  width: 100%; 
+  position: relative; 
+}
+@media (max-width: 768px) {    
+  .main-nav {      
+    flex-direction: column; 
+    justify-content: flex-start;
     align-items: center;
-    padding: 0 5px;
-}
-
-.search-box .log-search:hover {
-    color: #000;
+    position: static;
+    padding: 10px 0;
+  }
+  .main-nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    padding: 10px 0;
+  }
+  .main-nav ul li {
+    margin: 5px 10px;
+  }
+  .search-box {
+    position: static;
+    transform: none;
+    width: 90%;
+    margin-top: 10px;
+    padding: 0; 
+  }
+  .search-input-field {     
+    width: calc(100% - 40px);
+  }
 }
