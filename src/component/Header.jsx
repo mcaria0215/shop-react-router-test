@@ -1,19 +1,23 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
 import { MdLogin, MdLogout, MdSearch } from "react-icons/md"
+import React, { useState } from 'react';
 
-// 💡 메뉴 데이터 정의
 const MENU_ITEMS = [
   { name: "전체 상품", path: "/" },
-  { name: "남성", path: "/productAll/male_pants" },
-  { name: "여성", path: "/productAll/female_pants" },
-  { name: "아우터", path: "/productAll/outer" },
-  { name: "팬츠", path: "/productAll/outer" },
-  { name: "슈즈", path: "/productAll/outer" },
-  { name: "액세서리", path: "/productAll/outer" },
+  { name: "남성", path: "/" },
+  { name: "여성", path: "/" },
+  { name: "아우터", path: "/" },
+  { name: "팬츠", path: "/" },
+  { name: "슈즈", path: "/" },
+  { name: "액세서리", path: "/" },
 ];
 
 const Header = ({authenticate, handleLogout}) => { 
+  const [showSearch, setShowSearch] = useState(false);
+  const toggleSearch = () => {
+    setShowSearch(!showSearch);
+  };
+
   return (
     <header className='header-area'>
       <div className="log-buttons">                
@@ -25,7 +29,24 @@ const Header = ({authenticate, handleLogout}) => {
           <Link to="/login" className="log-in">
               <MdLogin /> 로그인
           </Link> 
-        )}   
+        )}
+
+        <div className="search-box">
+          {showSearch && (
+            <form className='search-form'>
+              <input 
+                type="text" 
+                name="search" 
+                placeholder="검색" 
+                className="search-input-field" 
+                autoFocus 
+              />
+            </form>
+          )}
+          <button onClick={toggleSearch} className='search-submit-btn'>
+            <MdSearch />
+          </button>
+        </div>       
       </div>
 
       <div className="logo-box">
@@ -43,14 +64,7 @@ const Header = ({authenticate, handleLogout}) => {
               </li>
             )
           })}
-        </ul>
-
-        <div className="search-box">
-          <form className='search-form'>            
-            <input type="text" name="search" placeholder="검색" className="search-input-field" autoFocus />
-            <button type='submit' className='search-submit-btn'><MdSearch /></button>                          
-          </form>
-        </div>            
+        </ul>   
       </nav> 
     </header>
   )

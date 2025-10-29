@@ -6,7 +6,7 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    padding: 20px 20px 40px;
+    padding: 20px 20px 30px;
     border-bottom: 1px solid #e0e0e0;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
     background-color: #ffffff;
@@ -18,6 +18,7 @@
     display: flex;
     justify-content: flex-end;
     margin-bottom: 10px;
+    gap: 15px;
 }
 .log-buttons a {
     text-decoration: none;
@@ -45,58 +46,16 @@
   display: flex;
   align-items: center;
 }
-.logo-box {
-    text-align: center;
-    margin-bottom: 20px;
-}
-.logo-box .logo {
-    display: inline-block;
-}
-.logo-box img {
-    max-height: 40px; 
-    width: auto;
-}
-.main-nav {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.main-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    gap: 30px;
-}
-.main-nav li a {
-    text-decoration: none;
-    color: #333;
-    font-size: 16px;
-    font-weight: 500;
-    padding: 5px 0;
-    position: relative;
-}
-.main-nav li a::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -3px;
-    width: 0;
-    height: 2px;
-    background-color: #000;
-    transition: width 0.3s ease-in-out;
-}
-.main-nav li a:hover::after {
-    width: 100%;
-}
 .search-box {  
-  position: absolute; 
-  right: 20px;
-  top: 50%;
-  transform: translateY(-50%);
+  position: relative;
+  top: auto;
+  right: auto;
+  display: flex;
+  align-items: center;
 }
 .search-form {
   display: flex;
+  justify-content: flex-end;
   align-items: center;
   border: none; 
   border-radius: 0;
@@ -136,12 +95,49 @@
 .search-submit-btn:hover {
   color: #000;
 }
+.logo-box {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.logo-box .logo {
+    display: inline-block;
+}
+.logo-box img {
+    max-height: 40px; 
+    width: auto;
+}
 .main-nav {
   display: flex;
-  justify-content: center; 
-  align-items: center; 
-  width: 100%; 
-  position: relative; 
+  justify-content: center;
+  align-items: center;
+}
+.main-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 30px;
+}
+.main-nav li a {
+  text-decoration: none;
+  color: #333;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 5px 0;
+  position: relative;
+}
+.main-nav li a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0;
+  height: 2px;
+  background-color: #000;
+  transition: width 0.3s ease-in-out;
+}
+.main-nav li a:hover::after {
+  width: 100%;
 }
 
 /* 상품리스트 */
@@ -159,6 +155,33 @@
 }
 .product-card .thumb {
   overflow: hidden; 
+  position: relative;
+}
+.product-card .thumb .new {  
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: red;
+  color: #fff;
+  font-size: 0.9em;
+  padding: 5px;
+}
+.product-card .info {
+  padding: 20px;
+}
+.product-card .info p + p {
+  margin-top: 5px;
+}
+.product-card .info .title {
+  font-weight: 600;  
+}
+.product-card .info .price {  
+  color: red;
+}
+.product-card .info .size {
+  margin-top: 2px;
+  color: #666;  
+  font-size: 0.9em;
 }
 
 /* 로그인 */
@@ -235,7 +258,16 @@
 
 
 /* mobile */
-@media (max-width: 768px) {    
+@media (max-width: 768px) {   
+  .header-area {
+    padding: 10px;
+  } 
+  .logo-box {
+    margin: 0;
+  }
+  .logo-box img {
+    max-height: 30px;
+  }
   .main-nav {      
     flex-direction: column; 
     justify-content: flex-start;
@@ -243,24 +275,7 @@
     position: static;
     padding: 10px 0;
   }
-  .main-nav ul {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    width: 100%;
-    padding: 10px 0;
-  }
-  .main-nav ul li {
-    margin: 5px 10px;
-  }
-  .search-box {
-    position: static;
-    transform: none;
-    width: 90%;
-    margin-top: 10px;
-    padding: 0; 
-  }
-  .search-input-field {     
-    width: calc(100% - 40px);
+  .main-nav ul {    
+    gap: 20px;    
   }
 }
