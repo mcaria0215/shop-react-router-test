@@ -7,7 +7,7 @@ const ProductAll = () => {
 
   const getProducts = async ()=>{
     try {
-      const url = `${import.meta.env.VITE_API_URL}`;
+      const url = `https://my-json-server.typicode.com/mcaria0215/react-data01/products`;
       const response = await fetch(url);
       const data = await response.json();
 
