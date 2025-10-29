@@ -1,9 +1,13 @@
 import './App.css'
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate, Navigate } from 'react-router-dom';
 import ProductAll from './page/ProductAll';
 import Detail from './page/Detail';
 import Login from './page/Login';
 import Header from './component/Header';
+import { ThemeProvider } from '@mui/material/styles'; 
+import theme from './theme'; // 
+import React, { useState } from 'react';
+import PrivateRoute from './route/PrivateRoute';
 
 /**
  * 1. 전체 상품페이지, 로그인, 상품상세페이지
@@ -15,16 +19,26 @@ import Header from './component/Header';
  */
 
 function App() {
+  const [authenticate, setAuthenticate] = useState(false);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    setAuthenticate(false);
+    navigate('/'); 
+  };
+
   return (
-    <>
-      <Header />
-      
-      <Routes>
-        <Route path="/" element={<ProductAll />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/detail/:id" element={<Detail />} />
-      </Routes>
-    </>
+    <ThemeProvider theme={theme}>
+      <>
+        <Header authenticate={authenticate} setAuthenticate={setAuthenticate} handleLogout={handleLogout}/>
+        
+        <Routes>
+          <Route path="/" element={<ProductAll />} />
+          <Route path="/login" element={<Login setAuthenticate={setAuthenticate}/>} />
+          <Route path="/detail/:id" element={<PrivateRoute authenticate={authenticate} />} />
+        </Routes>
+      </>
+    </ThemeProvider>
   )
 }
 

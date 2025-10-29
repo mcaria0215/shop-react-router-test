@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import ProductCard from '../component/ProductCard';
+import { Box } from '@mui/material';
 
 const ProductAll = () => {
   const [productList, setProductList] = useState([]);  
 
   const getProducts = async ()=>{
     try {
-      const url = "http://localhost:5001/products";
+      const url = `${import.meta.env.VITE_API_URL}`;
       const response = await fetch(url);
       const data = await response.json();
 
@@ -21,14 +22,27 @@ const ProductAll = () => {
   },[]);
 
   return (
-    <div>
-      {productList.length > 0 ? (
-        <div className='product-card-list'>
-          {productList.map((product)=>(
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
-      ) : (<p>상품을 불러오는 중입니다...</p>)}
+    <div className='container'> 
+      <Box sx={{ 
+          padding: 0,
+          display: 'grid',
+          gap: 0,          
+          gridTemplateColumns: {
+            xs: 'repeat(1, 1fr)',
+            sm: 'repeat(2, 1fr)',
+            md: 'repeat(3, 1fr)',
+            lg: 'repeat(4, 1fr)',
+          },
+        }}
+      >
+        {productList.length > 0 ? (
+          productList.map((product)=>(            
+            <Box key={product.id}>
+              <ProductCard product={product} />
+            </Box>
+          ))
+        ) : (<p>상품을 불러오는 중입니다...</p>)}
+      </Box>
     </div>
   )
 }

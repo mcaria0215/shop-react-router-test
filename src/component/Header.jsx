@@ -13,11 +13,19 @@ const MENU_ITEMS = [
   { name: "액세서리", path: "/productAll/outer" },
 ];
 
-const Header = () => {
+const Header = ({authenticate, handleLogout}) => { 
   return (
     <header className='header-area'>
-      <div className="log-buttons">        
-        <Link to="/login" className="log-in"><MdLogin /> 로그인</Link>        
+      <div className="log-buttons">                
+        {authenticate ? (              
+          <div onClick={handleLogout} className="log-out">
+            <MdLogout /> 로그아웃
+          </div>
+          ) : (              
+          <Link to="/login" className="log-in">
+              <MdLogin /> 로그인
+          </Link> 
+        )}   
       </div>
 
       <div className="logo-box">

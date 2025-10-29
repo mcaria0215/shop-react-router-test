@@ -1,9 +1,12 @@
-/* 기본 초기화 */
+/* 레이아웃 */
+.container { max-width: 1800px; margin:0 auto; }
+
+/* 헤더 */
 .header-area { 
     display: flex;
     flex-direction: column;
     width: 100%;
-    padding: 10px 20px;
+    padding: 20px 20px 40px;
     border-bottom: 1px solid #e0e0e0;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
     background-color: #ffffff;
@@ -31,6 +34,16 @@
 }
 .log-buttons a svg {
     margin-right: 5px;
+}
+.log-buttons .log-out {
+  cursor: pointer;
+  text-decoration: none;
+  color: #333;
+  font-size: 14px;
+  padding: 5px 10px;
+  transition: color 0.2s;
+  display: flex;
+  align-items: center;
 }
 .logo-box {
     text-align: center;
@@ -76,7 +89,6 @@
 .main-nav li a:hover::after {
     width: 100%;
 }
-
 .search-box {  
   position: absolute; 
   right: 20px;
@@ -97,8 +109,7 @@
   box-shadow: none;
 }
 .search-input-field {
-  padding: 8px 0;
-  margin-right: 10px;
+  padding: 8px 0;  
   border: none; 
   outline: none; 
   font-size: 15px;
@@ -132,6 +143,98 @@
   width: 100%; 
   position: relative; 
 }
+
+/* 상품리스트 */
+.product-card {
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+.product-card .thumb img {
+  transition: transform 0.2s ease-in-out; 
+  width: 100%;
+  object-fit: cover;
+}
+.product-card:hover .thumb img {    
+    transform: scale(1.05); 
+}
+.product-card .thumb {
+  overflow: hidden; 
+}
+
+/* 로그인 */
+.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 600px;
+  background-color: #fff;
+  padding: 20px;
+}
+.login-form {
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
+}
+.login-form h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 30px;
+  font-weight: 600;
+}
+.form-group {
+  margin-bottom: 20px;
+}
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #555;
+}
+.form-group input[type="text"],
+.form-group input[type="password"] {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
+.form-group input:focus {
+  border-color: #dc3545; 
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.25);
+}
+.login-button {
+    width: 100%;
+  background-color: #dc3545;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 600;
+  transition: background-color 0.3s;
+}
+.login-button:hover {
+  background-color: #c82333;
+}
+.error-message {
+  color: #dc3545;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+
+/* mobile */
 @media (max-width: 768px) {    
   .main-nav {      
     flex-direction: column; 
