@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom'
-import { MdLogin, MdLogout, MdSearch } from "react-icons/md"
+import { Link, useNavigate } from 'react-router-dom'
+import { MdLogin, MdLogout, MdSearch , MdMenu, MdClose} from "react-icons/md"
 import React, { useState } from 'react';
 
 const MENU_ITEMS = [
@@ -14,13 +14,54 @@ const MENU_ITEMS = [
 
 const Header = ({authenticate, handleLogout}) => { 
   const [showSearch, setShowSearch] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const handleMenuClick = () => {
+    setIsMenuOpen(false);
+  };
+
+  const closeMenuOnBackdrop = () => {
+    setIsMenuOpen(false);
+  };
+
+
+  const navigate = useNavigate();
+
   const toggleSearch = () => {
     setShowSearch(!showSearch);
+  };
+  
+  const handleInputChange = (e) => {
+    setSearchQuery(e.target.value);
+  };
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      navigate(`/search?q=${searchQuery.trim()}`);
+      setShowSearch(false); 
+      setSearchQuery("");   
+    } else {        
+      setShowSearch(false);
+    }
+  };
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const closeMenu = () => {
+    setIsMenuOpen(false);
   };
 
   return (
     <header className='header-area'>
-      <div className="log-buttons">                
+      <div className="log-buttons"> 
+         <div className="mobile-menu-button">
+          <button onClick={toggleMenu}><MdMenu size="28" /></button>
+        </div>
+
         {authenticate ? (              
           <div onClick={handleLogout} className="log-out">
             <MdLogout /> 로그아웃
@@ -33,17 +74,19 @@ const Header = ({authenticate, handleLogout}) => {
 
         <div className="search-box">
           {showSearch && (
-            <form className='search-form'>
+            <form className='search-form' onSubmit={handleSearchSubmit}>
               <input 
                 type="text" 
                 name="search" 
                 placeholder="검색" 
-                className="search-input-field" 
+                className="search-input-field"     
+                value={searchQuery}         
+                onChange={handleInputChange}            
                 autoFocus 
               />
             </form>
           )}
-          <button onClick={toggleSearch} className='search-submit-btn'>
+          <button onClick={showSearch ? handleSearchSubmit : toggleSearch} className='search-submit-btn'>
             <MdSearch />
           </button>
         </div>       
@@ -55,7 +98,7 @@ const Header = ({authenticate, handleLogout}) => {
         </Link>
       </div> 
 
-      <nav className="main-nav">
+      <nav className="main-nav desktop-only">
         <ul>
           {MENU_ITEMS.map((menu)=>{
             return (
@@ -66,6 +109,33 @@ const Header = ({authenticate, handleLogout}) => {
           })}
         </ul>   
       </nav> 
+
+      {isMenuOpen && (
+        <div 
+            className="backdrop mobile-only" 
+            onClick={closeMenuOnBackdrop} 
+        />
+      )}
+
+      {isMenuOpen && (
+        <div className="side-menu mobile-only">
+          <div className="side-menu-header">
+            <button onClick={handleMenuClick} className='menu-close-btn'><MdClose size="28" /></button>
+          </div>
+          <nav className="side-nav">
+            <ul>
+            {MENU_ITEMS.map((menu)=>{
+              return (
+                  <li key={menu.name} onClick={handleMenuClick}> 
+                    <Link to={menu.path}>{menu.name}</Link>
+                  </li>
+              )
+            })}
+            </ul>
+          </nav>
+        </div>
+      )}
+              
     </header>
   )
 }

@@ -34,6 +34,7 @@ function App() {
         
         <Routes>
           <Route path="/" element={<ProductAll />} />
+          <Route path="/search" element={<ProductAll />} />
           <Route path="/login" element={<Login setAuthenticate={setAuthenticate}/>} />
           <Route path="/detail/:id" element={<PrivateRoute authenticate={authenticate} />} />
         </Routes>
