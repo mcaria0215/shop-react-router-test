@@ -359,5 +359,6 @@
     z-index: 999;
     opacity: 1; 
     transition: opacity 0.3s ease-out;
+    cursor: pointer;
   }
 }
