@@ -257,7 +257,6 @@
   text-align: center;
 }
 
-
 /* mobile */
 @media (max-width: 768px) {   
   .header-area {
@@ -279,4 +278,7 @@
   .main-nav ul {    
     gap: 20px;    
   }
+  .product-info {
+    justify-content: center;
+  }  
 }

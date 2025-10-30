@@ -7,7 +7,7 @@ const ProductAll = () => {
 
   const getProducts = async ()=>{
     try {
-      const url = `https://my-json-server.typicode.com/mcaria0215/react-data01/products`;
+      const url = `https://my-json-server.typicode.com/mcaria0215/shop-react-router-test/products`;
       const response = await fetch(url);
       const data = await response.json();
 

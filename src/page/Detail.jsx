@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Container, Grid, Box, Typography, Button, Divider, Alert, CircularProgress } from '@mui/material';
+import { Container, Grid, Box, Typography, FormControl, InputLabel, Select, MenuItem, Button, Divider, Alert, CircularProgress } from '@mui/material';
 
 const Detail = () => {  
   const { id } = useParams();   
@@ -16,7 +16,7 @@ const Detail = () => {
 
   const getProductDetail = async () => {
     try {    
-      const url = `https://my-json-server.typicode.com/mcaria0215/react-data01/products/${id}`; 
+      const url = `https://my-json-server.typicode.com/mcaria0215/shop-react-router-test/products/${id}`; 
       const response = await fetch(url);
       
       if (!response.ok) {          
@@ -66,15 +66,14 @@ const Detail = () => {
   
   return (
     <Container maxWidth="lg" sx={{ mt: 5, mb: 5 }}>
-      <Grid container spacing={5}>
+      <Grid container spacing={5} className="product-info">
         {/* 좌측: 상품 이미지 */}
         <Grid item xs={12} md={6}>
             <Box 
               component="img"
               sx={{ 
                   width: '100%', 
-                  height: 'auto', 
-                  maxHeight: '650px',
+                  height: 'auto',                   
                   objectFit: 'contain',
                   borderRadius: '8px',
                   boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
@@ -92,11 +91,30 @@ const Detail = () => {
             </Typography>
             
             <Divider sx={{ my: 3 }} />
-
-            {/* 가격 정보 */}
+            
             <Typography variant="h4" color="primary.main" fontWeight="medium" sx={{ my: 2 }}>
                 ₩{product.price.toLocaleString()}
             </Typography>
+
+            <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+              <InputLabel id="size-select-label">Size</InputLabel>
+              <Select
+                labelId="size-select-label"
+                id="size-select"
+                value={selectedSize}
+                label="Size"
+                onChange={handleSizeChange}
+              >
+                <MenuItem value="">
+                <em>None</em>
+                </MenuItem>
+                {product.size.map((s)=>{
+                 return (                    
+                  <MenuItem key={s} value={s}>{s}</MenuItem>
+                  );
+                })}                               
+              </Select>
+            </FormControl>
             
             <Button 
               variant="contained" 
