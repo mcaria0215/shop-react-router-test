@@ -96,6 +96,13 @@ const Detail = () => {
                 ₩{product.price.toLocaleString()}
             </Typography>
 
+              {product.choice&&
+                <Typography variant="subtitle2" className='choice'>
+                  concious choice
+              </Typography>
+              }
+            
+
             <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
               <InputLabel id="size-select-label">Size</InputLabel>
               <Select
